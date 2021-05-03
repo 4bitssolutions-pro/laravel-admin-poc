@@ -12,7 +12,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="/users">
+                    <form method="POST" action="/superadmin/users">
                         @csrf
                         <div class="row">
 

@@ -17,10 +17,10 @@ use App\Http\Controllers\Auth\AuthController;
 Route::get('/login',[AuthController::class,'loginview'])->name('login');
 Route::get('/register',[AuthController::class,'registerview'])->name('register');
 Route::post('/register',[AuthController::class,'register'])->name('register');
-Route::post('/login',[loginview::class,'loginview'])->name('login');
+Route::post('/login',[AuthController::class,'login'])->name('login');
 
 
-Route::prefix('superadmin')->middleware('auth')->group(function(){
+Route::prefix('superadmin')->middleware('auth','can:superadmin_access')->group(function(){
 Route::post('/logout',function(){
     \Session::flush();
     return redirect('/');

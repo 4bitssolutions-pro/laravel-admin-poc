@@ -47,7 +47,7 @@ class UserController extends Controller
         $user->password=Hash::make(request('password'));
         $user->save();
         $user->roles()->sync(request('roles'));
-        return redirect('/users');
+        return redirect('/superadmin/users');
     }
 
     /**
