@@ -18,7 +18,7 @@ class CheckAuthStatus
     {
         $user = \Auth::user();
         if ($user) {
-            if ($user->status == false) {
+            if (!$user->is_active) {
                 \Session::flush();
                 return redirect()->route('login')->with(['status' => 'Your account is not activated!']);
             }
