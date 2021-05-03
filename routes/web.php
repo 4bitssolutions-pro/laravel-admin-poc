@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\SuperAdmin\UserController;
-
+use App\Http\Controllers\Auth\AuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,13 +14,13 @@ use App\Http\Controllers\SuperAdmin\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/login','App\Http\Controllers\Auth\AuthController@loginview')->name('login');
-Route::get('/register','App\Http\Controllers\Auth\AuthController@registerview')->name('register');
-Route::post('/register','App\Http\Controllers\Auth\AuthController@register')->name('register');
-Route::post('/login','App\Http\Controllers\Auth\AuthController@login');
+Route::get('/login',[AuthController::class,'loginview'])->name('login');
+Route::get('/register',[AuthController::class,'registerview'])->name('register');
+Route::post('/register',[AuthController::class,'register'])->name('register');
+Route::post('/login',[loginview::class,'loginview'])->name('login');
 
 
-Route::middleware('auth')->group(function(){
+Route::prefix('superadmin')->middleware('auth')->group(function(){
 Route::post('/logout',function(){
     \Session::flush();
     return redirect('/');
