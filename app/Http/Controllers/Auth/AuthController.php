@@ -9,16 +9,21 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
-
+    // start of login&register view
     public function loginview()
     {
 
         return view('auth/login');
     }
+
    public function registerview(){
 
         return view('auth/register');
     }
+    // end of login&register view
+
+
+    // start of login&register
 
 
     public function register(Request $request)
@@ -49,4 +54,6 @@ class AuthController extends Controller
         }
         return redirect('/');
     }
+    //    end start of login&register view
+
 }

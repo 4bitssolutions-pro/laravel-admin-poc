@@ -12,13 +12,13 @@ class PermissionRoleTableSeeder extends Seeder
     {
         $supadmin_permissions = Permission::all();
         Role::findOrFail(1)->permissions()->sync($supadmin_permissions->pluck('id'));
-        $manager_permissions = $supadmin_permissions->filter(function ($permission) {
-            return substr($permission->title, 0, 5) == 'manag' ;
+        $user_permissions = $supadmin_permissions->filter(function ($permission) {
+            return substr($permission->title, 0, 5) == 'user_' ;
         });
         $admin_permissions =$supadmin_permissions->filter(function ($permission) {
-            return substr($permission->title, 0, 5) !== 'subad' ;
+            return substr($permission->title, 0, 5) !== 'super' ;
         });
         Role::findOrFail(2)->permissions()->sync($admin_permissions);
-        Role::findOrFail(3)->permissions()->sync($manager_permissions);
+        Role::findOrFail(3)->permissions()->sync($user_permissions);
     }
 }

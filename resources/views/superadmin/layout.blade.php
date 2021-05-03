@@ -8,7 +8,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
-    @livewireStyles
+ @livewireStyles
     <link rel="stylesheet" href="{{ URL::asset('/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -149,118 +149,12 @@
                                 </a>
 
                             </li>
-                            <li class="nav-item">
-                                <a href="/employee" class="nav-link {{ request()->is('employee') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-house-user"></i>
-                                    <p>
-                                        Employee
 
-                                    </p>
-                                </a>
-
-                            </li>
                         @endcan
 
-                        <li class="nav-item">
-                            <a href="/vendor" class="nav-link {{ request()->is('vendor') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-user-tie"></i>
-                                <p>
-                                    Vendors
-                                </p>
-                            </a>
-
-                        </li>
 
 
 
-                        <li class="nav-item ">
-                            <a href="/customer" class="nav-link {{ request()->is('customer') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-user"></i>
-                                <p>
-                                    Customer
-
-                                </p>
-                            </a>
-
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="/stock" class="nav-link {{ request()->is('stock') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-cubes"></i>
-                                <p>Stocks</p>
-                            </a>
-                        </li>
-
-
-                        <li class="nav-item has-treeview">
-                            <a href="#"
-                                class="nav-link {{ request()->is('purchase') ? 'active' : '' }}{{ request()->is('purchase/*') ? 'active' : '' }}">
-                                <i class="fas fa-inventory"></i>
-                                <p>
-                                    Purchase Orders
-                                    <i class="fas fa-angle-left right"></i>
-
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/purchase/create"
-                                        class="nav-link {{ request()->is('purchase/create') ? 'active' : '' }}">
-                                        <i class="fas fa-plus-square nav-icon"></i>
-                                        <p>Create Purchase Order</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/purchase"
-                                        class="nav-link {{ request()->is('purchase') ? 'active' : '' }}">
-                                        <i class="fas fa-th-list nav-icon"></i>
-                                        <p>View/Edit Purchase Order</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-                        <li class="nav-item has-treeview">
-                            <a href="#"
-                                class="nav-link {{ request()->is('order') ? 'active' : '' }} {{ request()->is('order/*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-clipboard-check"></i>
-                                <p>
-                                    Orders
-                                    <i class="fas fa-angle-left right"></i>
-
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/order/create"
-                                        class="nav-link {{ request()->is('order/create') ? 'active' : '' }}">
-                                        <i class="fas fa-plus-square nav-icon"></i>
-                                        <p>Create Order</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/order" class="nav-link {{ request()->is('order') ? 'active' : '' }}">
-                                        <i class="fas fa-th-list nav-icon"></i>
-                                        <p>View/Edit Order</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a href="/transaction"
-                                class="nav-link {{ request()->is('transaction') ? 'active' : '' }}{{ request()->is('transaction/*') ? 'active' : '' }}">
-                                <img src="/dist/img/trans.svg" style="width: 1.6rem; fill: white;">
-                                <p>
-                                    Transactions
-
-                                </p>
-                            </a>
-
-                        </li>
 
 
 

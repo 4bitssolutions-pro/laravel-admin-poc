@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\SuperAdmin\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +21,11 @@ Route::post('/login','App\Http\Controllers\Auth\AuthController@login');
 
 
 Route::middleware('auth')->group(function(){
+Route::post('/logout',function(){
+    \Session::flush();
+    return redirect('/');
+})->name('logout');
+Route::resource('/users', UserController::class);
 
     Route::get('/', function () {
         return view('welcome');
