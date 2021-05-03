@@ -20,7 +20,7 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 3,
-                'title' => 'user_access',
+                'title' => 'manager_access',
             ],
         ];
 

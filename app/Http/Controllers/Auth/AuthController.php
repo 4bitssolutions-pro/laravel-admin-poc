@@ -38,8 +38,8 @@ class AuthController extends Controller
 
         $user = User::create($validatedData);
 
+       return redirect('/');
 
-        return redirect('/');
       }
 
     public function login(Request $request)
@@ -55,5 +55,10 @@ class AuthController extends Controller
         return redirect('/');
     }
     //    end start of login&register view
+
+    public function logout(){
+        \Session::flush();
+        return redirect('/');
+    }
 
 }
