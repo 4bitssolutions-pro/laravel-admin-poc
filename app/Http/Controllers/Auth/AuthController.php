@@ -74,7 +74,7 @@ public function google()
 public function google_redirect()
 {
     $user=Socialite::driver('google')->user();
-dd($user);
+
     $user=User::firstOrCreate(['email'=>$user->email],
     [
         'name'=>$user->name,
