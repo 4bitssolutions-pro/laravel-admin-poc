@@ -20,7 +20,7 @@ class All extends Component
         $this->emit('editmod');
     }
 
-
+//Delete User
     public function delete($id)
     {
         User::findorfail($id)->delete();
@@ -39,11 +39,7 @@ class All extends Component
     }
 
 
-    public function Clicked()
-    {
-
-        dd($this->status);
-    }
+    // Active status change
     public function changestat($id)
     {
 

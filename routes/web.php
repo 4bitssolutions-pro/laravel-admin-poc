@@ -17,11 +17,18 @@ use App\Http\Controllers\DashboardController;
 |
 */
 // Auth Routes
-Route::get('/register',[AuthController::class,'registerview'])->name('register');
-Route::post('/register',[AuthController::class,'register'])->name('register');
-Route::get('/login',[AuthController::class,'loginview'])->name('login');
-Route::post('/login',[AuthController::class,'login'])->name('login');
-Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+Route::middleware('guest')->group(function () {
+    Route::get('/register',[AuthController::class,'registerview'])->name('register');
+    Route::post('/register',[AuthController::class,'register'])->name('register');
+    Route::get('/login',[AuthController::class,'loginview'])->name('login');
+    Route::post('/login',[AuthController::class,'login'])->name('login');
+    Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+
+    Route::get('/google-signin',[AuthController::class,'google']);
+    Route::get('/google-signin-redirect',[AuthController::class,'google_redirect']);
+
+});
+
 Route::get('/',[DashboardController::class,'index'])->middleware('auth');
 
 
@@ -32,7 +39,7 @@ Route::prefix('superadmin')->middleware('auth','can:superadmin_access')->group(f
 Route::resource('/users', UserController::class);
 
     Route::get('/', function () {
-        return view('welcome');
+        return view('superadmin.dashboard');
     });
 });
 

@@ -149,7 +149,7 @@
 
 
 
-
+{{-- User Table --}}
 
 
 
@@ -185,22 +185,13 @@
                                 @foreach ($users as $row)
                                     <tr>
                                         <td>{{ $row->name }}</td>
-
                                         <td>{{ $row->email }}</td>
-                                        {{-- <td>
-
-                                            @if ($row->status == 1) Active
-                                            @else
-                                                Deactivated
-                                            @endif
-                                        </td> --}}
                                         <td>
                                             @foreach ($row->roles as $role)
                                                 {{ $role->title }}
                                             @endforeach
                                         </td>
                                         <td>
-
                                             <button class="btn btn-primary btn-sm" data-toggle="modal"
                                                 wire:click.prevent="changepass({{ $row->id }})">
                                                 <i class="fas fa-key">
@@ -215,8 +206,8 @@
                                                 Delete User </button>
 
                                         </td>
-                                <td> <div class="icheck-primary d-inline">
-    <input type="checkbox" id="checkboxPrimary1" wire:change="changestat({{ $row->id }})" {{$row->is_active ? 'checked' : ''}}  >
+                                <td>
+    <input type="checkbox"  wire:change="changestat({{ $row->id }})" {{$row->is_active ? 'checked' : ''}}  >
     <label for="checkboxPrimary1">
     </label>
   </div>
@@ -234,11 +225,6 @@
 @push('scripts')
 
     <script>
-        // function vat() {
-        //     $('.select2').select2();
-        // }
-
-
 
         window.livewire.on('editmod', () => {
 

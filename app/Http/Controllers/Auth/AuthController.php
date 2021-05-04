@@ -56,9 +56,21 @@ class AuthController extends Controller
     }
     //    end start of login&register view
 
+// Logout function
     public function logout(){
-        \Session::flush();
+      Auth::logout();
         return redirect('/');
     }
+
+
+public function google()
+{
+
+}
+
+public function google_redirect(){
+
+
+}
 
 }
