@@ -65,8 +65,9 @@
 <script src="{{ URL::asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ URL::asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ URL::asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ URL::asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 
-<script src="../plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+<script src="{{ URL::asset('plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
 <script>
    $(function () {
       //Initialize Select2 Elements

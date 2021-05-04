@@ -10,7 +10,7 @@ use Livewire\Component;
 class All extends Component
 {
     public $users, $roles, $u_id, $logs = [];
-    public $password, $password_confirmation, $status;
+    public $password, $password_confirmation, $status,$active;
 
 
     public function changepass($id)
@@ -43,6 +43,14 @@ class All extends Component
     {
 
         dd($this->status);
+    }
+    public function changestat($id)
+    {
+
+        $user = User::findorfail($id);
+        $user->is_active=($user->is_active)? false:true;
+        $user->save();
+
     }
     public function render()
     {

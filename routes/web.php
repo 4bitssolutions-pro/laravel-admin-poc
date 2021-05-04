@@ -17,15 +17,13 @@ use App\Http\Controllers\DashboardController;
 |
 */
 // Auth Routes
-Route::get('/login',[AuthController::class,'loginview'])->name('login');
 Route::get('/register',[AuthController::class,'registerview'])->name('register');
 Route::post('/register',[AuthController::class,'register'])->name('register');
+Route::get('/login',[AuthController::class,'loginview'])->name('login');
 Route::post('/login',[AuthController::class,'login'])->name('login');
 Route::post('/logout',[AuthController::class,'logout'])->name('logout');
-Route::get('/',[DashboardController::class,'index'])->middleware('auth.basic');
-Route::post('/logout',function(){
+Route::get('/',[DashboardController::class,'index'])->middleware('auth');
 
-})->name('logout');
 
 
 // Superadmin Routes

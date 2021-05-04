@@ -178,6 +178,7 @@
                                     {{-- <th>Status</th> --}}
                                     <th>roles</th>
                                     <th>Edit</th>
+                                    <th>Active</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -214,7 +215,12 @@
                                                 Delete User </button>
 
                                         </td>
-
+                                <td> <div class="icheck-primary d-inline">
+    <input type="checkbox" id="checkboxPrimary1" wire:change="changestat({{ $row->id }})" {{$row->is_active ? 'checked' : ''}}  >
+    <label for="checkboxPrimary1">
+    </label>
+  </div>
+</td>
                                     </tr>
                                 @endforeach
                             </tbody>
