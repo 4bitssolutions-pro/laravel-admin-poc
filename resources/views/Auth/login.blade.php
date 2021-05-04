@@ -69,7 +69,12 @@
 
 
       <!-- /.social-auth-links -->
-
+      <div class="social-auth-links text-center mb-3">
+        <p>- OR -</p>
+        <a href="/google-signin" class="btn btn-block btn-danger">
+          <i class="fab fa-google-plus mr-2"></i> Sign in using Google
+        </a>
+      </div>
       <p class="mb-1">
          @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">

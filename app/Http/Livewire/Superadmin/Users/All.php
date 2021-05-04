@@ -12,11 +12,13 @@ class All extends Component
     public $users, $roles, $u_id, $logs = [];
     public $password, $password_confirmation, $status,$active;
 
+    protected $rules = [
+        'roles' => ['required']
 
+    ];
     public function changepass($id)
     {
         $this->u_id = $id;
-
         $this->emit('editmod');
     }
 
@@ -38,20 +40,38 @@ class All extends Component
         }
     }
 
+public function changerole($id)
+{
+    $this->u_id = $id;
+    $this->emit('changerolemodal');
+}
 
+public function changerolesubmit()
+{
+    $user = User::findorfail($this->u_id);
+    $this->validate();
+    $user->roles()->detach();
+
+    $user->roles()->attach($this->roles);
+
+}
     // Active status change
     public function changestat($id)
     {
 
         $user = User::findorfail($id);
+
         $user->is_active=($user->is_active)? false:true;
+        if(count($user->roles) < 1){
+            $user->roles()->sync(3);
+        }
         $user->save();
 
     }
     public function render()
     {
          $this->roles = Role::all();
-        $this->users = User::with('roles')->get();
+        $this->users = User::with('roles')->orderBy('is_active')->get();
         return view('livewire.superadmin.users.all');
     }
 }

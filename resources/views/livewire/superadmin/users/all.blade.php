@@ -149,6 +149,52 @@
 
 
 
+     {{-- Change Role Modal --}}
+
+     <div class="modal fade" wire:ignore.self id="changerolemodal" tabindex="-1" role="dialog" aria-labelledby="changerolemodal"
+     aria-hidden="true">
+     <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+             <div class="modal-body">
+
+
+                 <div class="row">
+                    <div class="form-group col-md-12">
+
+                        <select class="form-control" id="roles" wire:model.defer="roles" style="width: 100%;">
+                            <option>Select a Roles</option>
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->title }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('stock') <span class="text-danger">{{ $message }}</span> @enderror
+
+                    </div>
+
+
+                 </div>
+
+
+
+
+
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" wire:loading.attr="disabled"
+                     data-dismiss="modal">Close</button>
+                 <button type="submit" wire:click.prevent="changerolesubmit()" class="btn btn-primary">Change Role</button>
+             </div>
+         </div>
+     </div>
+ </div>
+
 {{-- User Table --}}
 
 
@@ -204,6 +250,11 @@
                                                 <i class="fas fa-trash">
                                                 </i>
                                                 Delete User </button>
+                                                <button class="btn btn-success btn-sm" data-toggle="modal"
+                                                wire:click.prevent="changerole({{ $row->id }})">
+                                                <i class="fas fa-users">
+                                                </i>
+                                                Change Role</button>
 
                                         </td>
                                 <td>
@@ -234,8 +285,12 @@
     </script>
     <script>
         window.livewire.on('logmod', () => {
-            console.log("working");
             $('#logmodal').modal('toggle');
+        });
+
+    </script>  <script>
+        window.livewire.on('changerolemodal', () => {
+            $('#changerolemodal').modal('toggle');
         });
 
     </script>
