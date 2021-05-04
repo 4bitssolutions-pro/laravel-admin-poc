@@ -193,7 +193,7 @@
 
         <footer class="main-footer no-print">
 
-            <strong>Copyright &copy; 2020 <a href="https://www.crazymouse.co.in">Crazymouse.co.in</a>.</strong> All
+            <strong>Copyright &copy; 2020</strong> All
             rights
             reserved.
         </footer>

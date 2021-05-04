@@ -19,7 +19,11 @@ class CheckAuthStatus
         $user = \Auth::user();
         if ($user) {
             if (!$user->is_active) {
-                \Session::flush();
+                \Auth::logout();
+                return redirect()->route('login')->with(['status' => 'Your account is not activated!']);
+            }
+            if (count(\Auth::user()->roles)==0) {
+                \Auth::logout();
                 return redirect()->route('login')->with(['status' => 'Your account is not activated!']);
             }
         }

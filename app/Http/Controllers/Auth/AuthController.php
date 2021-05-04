@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Socialite;
+use Str;
 class AuthController extends Controller
 {
     // start of login&register view
@@ -44,6 +46,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+
         $loginData = $request->validate([
             'email' => 'email|required',
             'password' => 'required'
@@ -65,12 +68,20 @@ class AuthController extends Controller
 
 public function google()
 {
-
+    return Socialite::driver('google')->redirect();
 }
 
-public function google_redirect(){
+public function google_redirect()
+{
+    $user=Socialite::driver('google')->user();
 
-
+    $user=User::firstOrCreate(['email'=>$user->email],
+    [
+        'name'=>$user->name,
+        'password'=>Hash::make(Str::random(24))
+    ]);
+    Auth::login($user,true);
+return redirect('/');
 }
 
 }
