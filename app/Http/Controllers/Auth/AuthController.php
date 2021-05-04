@@ -78,6 +78,8 @@ public function google_redirect()
     $user=User::firstOrCreate(['email'=>$user->email],
     [
         'name'=>$user->name,
+        'google_id'=>$user->id,
+        'photo'=>$user->avatar,
         'password'=>Hash::make(Str::random(24))
     ]);
     Auth::login($user,true);

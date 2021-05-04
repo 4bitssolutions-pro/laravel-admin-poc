@@ -29,7 +29,7 @@ Route::get('/google-signin',[AuthController::class,'google']);
 Route::get('/google-signin-redirect',[AuthController::class,'google_redirect']);
 Route::get('/',[DashboardController::class,'index'])->middleware('auth');
 
-    Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+    Route::post('/logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
 Route::get('/not-activated',[DashboardController::class,'notactivated']);
 // Superadmin Routes
 Route::prefix('superadmin')->middleware('auth','can:superadmin_access')->group(function(){
