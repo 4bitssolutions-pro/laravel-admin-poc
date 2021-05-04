@@ -53,7 +53,7 @@ class AuthController extends Controller
         ]);
 
         if (!auth()->attempt($loginData)) {
-            return response(['message' => 'This User does not exist, check your details'], 400);
+            return redirect('/login')->with('error','Sorry Email or Password is Wrong');
         }
         return redirect('/');
     }
@@ -82,8 +82,9 @@ public function google_redirect()
         'photo'=>$user->avatar,
         'password'=>Hash::make(Str::random(24))
     ]);
+
     Auth::login($user,true);
-return redirect('/');
+    return redirect('/');
 }
 
 }

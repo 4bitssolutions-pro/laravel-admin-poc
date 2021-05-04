@@ -26,6 +26,24 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
+        @if(session()->has('error'))
+
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+           {{session()->get('error')}}
+          </div>
+
+        @endif
+          @if(session()->has('status'))
+
+        <div class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+           {{session()->get('status')}}
+          </div>
+
+        @endif
       <p class="login-box-msg">Sign in to start your session</p>
       @if ($errors->has('email'))
       <span class="help-block">
@@ -72,7 +90,7 @@
       <div class="social-auth-links text-center mb-3">
         <p>- OR -</p>
         <a href="/google-signin" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Sign in using Google
+          <i class="fab fa-google mr-2"></i> Sign in using Google
         </a>
       </div>
       <p class="mb-1">
