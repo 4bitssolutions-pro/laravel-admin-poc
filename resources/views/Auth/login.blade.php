@@ -60,6 +60,11 @@
             </div>
           </div>
         </div>
+        @if ($errors->has('password'))
+        <span class="help-block">
+            <strong style="color:red; padding-bottom:5px;">{{ $errors->first('password') }}</strong>
+        </span>
+    @endif
         <div class="input-group mb-3">
           <input type="password" class="form-control" id="password" name="password" required autocomplete="current-password" >
           <div class="input-group-append">
