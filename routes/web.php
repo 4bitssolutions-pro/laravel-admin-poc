@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\SuperAdmin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\superadmin\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Route::get('/not-activated',[DashboardController::class,'notactivated']);
 Route::prefix('superadmin')->middleware('auth','can:superadmin_access')->group(function(){
 
 Route::resource('/users', UserController::class);
+Route::get('/customers',[CustomerController::class,'index']);
 
     Route::get('/', function () {
         return view('superadmin.dashboard');
