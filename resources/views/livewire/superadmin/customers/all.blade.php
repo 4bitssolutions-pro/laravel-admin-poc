@@ -195,7 +195,7 @@
                     <div class="row ">
                         <div class="form-group col-md-2">
                             <label for="exampleInputBorder">Search</label>
-                            <input type="text" wire:ignore.self wire:model.debounce.500ms="search" class="form-control" placeholder="Search">
+                            <input type="text" wire:ignore.self wire:model.debounce.200ms="search" class="form-control" placeholder="Search">
                         </div>
 
                       <div class="form-group col-md-2">
@@ -204,6 +204,8 @@
                             <option value="10">10</option>
                             <option value="30">30</option>
                             <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="500">500</option>
                         </select>
                       </div>
 

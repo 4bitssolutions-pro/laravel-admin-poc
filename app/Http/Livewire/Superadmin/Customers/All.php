@@ -97,9 +97,9 @@ class All extends Component
 
     public function render()
     {
-        $data=customer::where( 'name' , 'like' , '%' . $this->search . '%' )
-        ->orWhere( 'email' , 'like' , '%' . $this->search . '%' )
-        ->orWhere( 'contact' , 'like' , '%' . $this->search . '%' )->orderBy($this->sortby)->paginate($this->pagesize);
+
+        $data=Customer::where( 'name' , 'like' , '%' . $this->search . '%' )
+        ->orWhere( 'email' , 'like' , '%' . $this->search . '%' ) ->orWhere( 'contact' , 'like' , '%' . $this->search . '%' )->orWhere( 'address' , 'like' , '%' . $this->search . '%' )->orderBy($this->sortby)->paginate($this->pagesize);
         return view('livewire.superadmin.customers.all',compact('data'));
     }
 }
