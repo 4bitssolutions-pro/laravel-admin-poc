@@ -23,7 +23,6 @@ class All extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-
     public function submit()
     {
         $data = $this->validate([
