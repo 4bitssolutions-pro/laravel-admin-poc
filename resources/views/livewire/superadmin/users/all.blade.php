@@ -35,7 +35,7 @@
                                 </div>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="password" class="form-control" placeholder="Password" type="password"
+                                <input type="password" class="form-control" placeholder="Password" id="inputPassword" type="password"
                                     name="password" required autocomplete="new-password">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
@@ -45,7 +45,7 @@
                             </div>
                             <div class="input-group mb-3">
                                 <input type="password" class="form-control" placeholder="Retype password"
-                                    type="password" name="password_confirmation" required autocomplete="new-password">
+                                    type="password" name="password_confirmation" required  id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" autocomplete="new-password">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-lock"></span>

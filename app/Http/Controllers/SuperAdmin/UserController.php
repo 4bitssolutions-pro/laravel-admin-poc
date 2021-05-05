@@ -39,11 +39,15 @@ class UserController extends Controller
     public function store(Request $request)
     {
         abort_if(Gate::denies('superadmin_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
+        $validatedData = $request->validate([
+            'name' => 'required|max:55',
+            'email' => 'email|required|unique:users',
+            'password' => 'required|confirmed'
+        ]);
         $user = new User;
+
         $user->name=request('name');
         $user->email=request('email');
-
         $user->password=Hash::make(request('password'));
         $user->save();
         $user->roles()->sync(request('roles'));

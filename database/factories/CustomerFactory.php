@@ -22,11 +22,12 @@ class CustomerFactory extends Factory
     public function definition()
     {
         return [
-            'name' =>$this->faker->name(),
+            'name' =>$this->faker->unique()->name(),
             'address' => $this->faker->realText($maxNbChars = 20, $indexSize = 2),
             'email' => $this->faker->unique()->safeEmail(),
-            'contact' =>$this->faker->numerify('##########'),
-            'aadhar_no'=>$this->faker->numerify('############'),
+            'contact' =>$this->faker->unique()->numerify('##########'),
+            'aadhar_no'=>$this->faker->unique()->numerify('############'),
+            'status'=>$this->faker->randomElement(['active', 'completed', 'on hold']),
             'is_verified'=>$this->faker->boolean($chanceOfGettingTrue = 50)
         ];
     }

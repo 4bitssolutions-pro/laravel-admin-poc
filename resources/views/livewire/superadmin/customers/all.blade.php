@@ -217,7 +217,15 @@
                             <option value="contact">Contact</option>
                         </select>
                       </div>
-
+                      <div class="form-group col-md-2">
+                        <label for="exampleSelectBorder">Filter By Status</label>
+                        <select class="custom-select form-control-border"  wire:model="statusfilter" id="exampleSelectBorder">
+                            <option value="">None</option>
+                            <option value="active">Active</option>
+                            <option value="completed">Completed</option>
+                            <option value="on hold">On Hold</option>
+                        </select>
+                      </div>
                 </div>
                     <div>
                     <table id="" class="table table-bordered table-head-fixed table-hover">
@@ -226,6 +234,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Address</th>
+                                <th>Status</th>
                                 <th>Contact</th>
                                 <th>Actions</th>
 
@@ -237,6 +246,7 @@
                                     <td>{{ $row->name }}</td>
                                     <td>{{ $row->email }}</td>
                                     <td>{{ $row->address }}</td>
+                                    <td>{{ $row->status }}</td>
                                     <td>{{ $row->contact }}</td>
                                     <td>
 

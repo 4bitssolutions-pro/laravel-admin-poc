@@ -19,6 +19,7 @@ class CreateCustomersTable extends Migration
             $table->string('contact');
             $table->string('email');
             $table->string('address',255);
+            $table->string('status',255)->default('sleeping');
             $table->double('aadhar_no',12);
             $table->boolean('is_verified')->default(false);
             $table->timestamps();
