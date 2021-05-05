@@ -13,10 +13,10 @@ class All extends Component
     public $name;
     public $email;
     public $address;
-    public $contact;
+    public $contact,$aadhar;
     public $gst, $c_id, $oc_id;
-    public $company;
-    public $event;
+    public $event,$pagesize=10,$sortby="name";
+    public $search="";
     public $listeners = [
         'reviewSectionRefresh' => 'render',
     ];
@@ -31,34 +31,35 @@ class All extends Component
             'email' => 'required|email',
             'address' => 'required',
             'contact' => 'numeric|min:10',
+            'aadhar' => 'numeric|min:10',
         ]);
         $customer = new customer();
         $customer->name = $this->name;
         $customer->address = $this->address;
         $customer->contact = $this->contact;
         $customer->email = $this->email;
-        $customer->company = $this->company;
+        $customer->aadhar_no = $this->aadhar;
 
-        $customer->gstid = $this->gst;
         $customer->save();
         $this->emit('addmod');
         $this->dispatchBrowserEvent('form-submitted', ['msg' => 'Customer Created successfully']);
 
-        $this->resetForm();
-        return back();
     }
+
     public function edit($id)
     {
+
         $this->c_id = $id;
         $this->oc_id = $this->c_id;
         $customer = customer::findorfail($id);
-
         $this->name = $customer->name;
         $this->contact = $customer->contact;
         $this->email = $customer->email;
         $this->address = $customer->address;
-        $this->gst = $customer->gstid;
+        $this->aadhar = $customer->aadhar_no;
+
         $this->emit('editmod');
+
     }
 
 
@@ -67,6 +68,8 @@ class All extends Component
 
     public function update($id)
     {
+        dd("toot");
+
         if ($this->oc_id !== $id) {
             abort(403, 'Stop The Experiment');
         }
@@ -77,12 +80,10 @@ class All extends Component
         $customer->address = $this->address;
         $customer->contact = $this->contact;
         $customer->email = $this->email;
-        $customer->company = $this->company;
+        $customer->aadhar_no = $this->aadhar;
 
-        $customer->gstid = $this->gst;
         $customer->save();
         $this->emit('editmod');
-        $this->emitSelf('reviewSectionRefresh');
 
         $this->resetForm();
         return back();
@@ -91,16 +92,14 @@ class All extends Component
     public function delete($id)
     {
         customer::findorFail($id)->delete();
-        return redirect()->to('/customer');
     }
-    // public function paginationView()
-    // {
-    //     return 'vendor/livewire/custom-pagination-links-view';
-    // }
+
 
     public function render()
     {
-        $data=customer::latest()->paginate();
+        $data=customer::where( 'name' , 'like' , '%' . $this->search . '%' )
+        ->orWhere( 'email' , 'like' , '%' . $this->search . '%' )
+        ->orWhere( 'contact' , 'like' , '%' . $this->search . '%' )->orderBy($this->sortby)->paginate($this->pagesize);
         return view('livewire.superadmin.customers.all',compact('data'));
     }
 }

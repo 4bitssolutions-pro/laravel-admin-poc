@@ -54,21 +54,16 @@
                                         placeholder="Enter Address"></textarea>
                                     @error('address') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
-                            </div>
-                            <div class="form-row">
+                            </div> <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="exampleInputEmail1">Company</label>
-                                    <input type="text" class="form-control" wire:model.defer="company"
-                                        placeholder="Enter Company Name">
-                                    @error('company') <span class="text-danger">{{ $message }}</span> @enderror
+                                    <label for="exampleInputEmail1">Aadhar</label>
+                                    <input type="text" class="form-control" wire:model.defer="aadhar"
+                                        placeholder="Enter 12 digit Aadhar Number">
+                                    @error('contact') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="exampleInputEmail1">GST</label>
-                                    <input type="text" class="form-control" wire:model.defer="gst"
-                                        placeholder="Enter Gst ID">
-                                    @error('gst') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
+
                             </div>
+
                         </div>
                         <!-- /.card-body -->
 
@@ -92,7 +87,7 @@
 
 
     <!-- Edit Stock  -->
-    <div class="modal fade" wire:ignore.self id="editmodal" tabindex="-1" role="dialog" aria-labelledby="editmodal"
+    <div class="modal fade" wire:ignore.self id="editmodal"  tabindex="-1" role="dialog" aria-labelledby="editmodal"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -111,7 +106,7 @@
                         </div>
 
                     @endif
-                    <form role="form"  method="post">
+                    <form role="form"  method="POST" wire:submit.prevent="update">
                         @csrf
 
                         <div class="card-body">
@@ -148,17 +143,12 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="exampleInputEmail1">Company</label>
-                                    <input type="text" class="form-control" wire:model.defer="company"
-                                        placeholder="Enter Company Name">
-                                    @error('company') <span class="text-danger">{{ $message }}</span> @enderror
+                                    <label for="exampleInputEmail1">Aadhar</label>
+                                    <input type="text" class="form-control" wire:model.defer="aadhar"
+                                        placeholder="Enter 12 digit Aadhar Number">
+                                    @error('contact') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="exampleInputEmail1">GST</label>
-                                    <input type="text" class="form-control" wire:model.defer="gst"
-                                        placeholder="Enter Gst ID">
-                                    @error('gst') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
+
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -166,7 +156,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" wire:loading.attr="disabled"
                             data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn  btn-primary" wire:click.prevent="update({{$c_id}})" wire:loading.attr="disabled">Submit</button>
+                        <button type="submit" class="btn  btn-primary"  wire:loading.attr="disabled">Submit</button>
 
                     </div>
                 </div>
@@ -185,8 +175,9 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">All Customers Details</h3>
+
                     <div class="card-tools">
+
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                             title="Collapse">
                             <i class="fas fa-minus"></i></button>
@@ -194,11 +185,39 @@
                             title="Add">
                             <i class="fas fa-plus"></i>&nbsp;Add Customer</button>
 
+
+                                </div>
+
                     </div>
-                </div>
+
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <div >
+                    <div class="row ">
+                        <div class="form-group col-md-2">
+                            <label for="exampleInputBorder">Search</label>
+                            <input type="text" wire:ignore.self wire:model.debounce.500ms="search" class="form-control" placeholder="Search">
+                        </div>
+
+                      <div class="form-group col-md-2">
+                        <label for="exampleSelectBorder">Items Per Page</label>
+                        <select class="custom-select form-control-border"  wire:model="pagesize" id="exampleSelectBorder">
+                            <option value="10">10</option>
+                            <option value="30">30</option>
+                            <option value="50">50</option>
+                        </select>
+                      </div>
+
+    <div class="form-group col-md-2">
+                        <label for="exampleSelectBorder">Sort By</label>
+                        <select class="custom-select form-control-border"  wire:model="sortby" id="exampleSelectBorder">
+                            <option value="name">Name</option>
+                            <option value="email">Email</option>
+                            <option value="contact">Contact</option>
+                        </select>
+                      </div>
+
+                </div>
+                    <div>
                     <table id="" class="table table-bordered table-head-fixed table-hover">
                         <thead>
                             <tr>
@@ -218,12 +237,7 @@
                                     <td>{{ $row->address }}</td>
                                     <td>{{ $row->contact }}</td>
                                     <td>
-                                        {{-- <button class="btn btn-primary btn-sm"
-                                            wire:click="addstock({{ $row->id }})">
-                                            <i class="fas fa-plus">
-                                            </i>
-                                            Add Stocks
-                                        </button> --}}
+
                                         <button class="btn btn-info btn-sm" wire:click="edit({{ $row->id }})">
                                             <i class="fas fa-pencil-alt">
                                             </i>
@@ -239,7 +253,6 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                        {{-- {{ $data->links('custom-pagination-links-view') }} --}}
                     </table>
                     </div>
                 </div>

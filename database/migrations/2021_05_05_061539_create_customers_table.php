@@ -23,6 +23,9 @@ class CreateCustomersTable extends Migration
             $table->boolean('is_verified')->default(false);
             $table->timestamps();
         });
+        DB::statement(
+            'ALTER TABLE customers ADD FULLTEXT fulltext_index(name, email, contact,address)'
+        );
     }
 
     /**
