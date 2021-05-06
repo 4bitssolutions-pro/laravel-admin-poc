@@ -129,7 +129,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="/superadmin" class="nav-link {{ request()->is('/') ? 'active' : '' }}">
+                            <a href="/superadmin" class="nav-link {{ request()->is('superadmin/') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -137,9 +137,9 @@
                             </a>
 
                         </li>
-                        @can('superadmin_access')
+
                             <li class="nav-item">
-                                <a href="/superadmin/users" class="nav-link {{ request()->is('users') ? 'active' : '' }}">
+                                <a href="/superadmin/users" class="nav-link {{ request()->is('superadmin/users') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-users-cog"></i>
                                     <p>
                                         Users
@@ -147,9 +147,18 @@
                                     </p>
                                 </a>
 
+                            </li>   <li class="nav-item">
+                                <a href="/superadmin/customers" class="nav-link {{ request()->is('superadmin/customers') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-users-cog"></i>
+                                    <p>
+                                        Customers
+
+                                    </p>
+                                </a>
+
                             </li>
 
-                        @endcan
+
 
 
 
