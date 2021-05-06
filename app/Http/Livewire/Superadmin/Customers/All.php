@@ -40,7 +40,7 @@ class All extends Component
         $customer->aadhar_no = $this->aadhar;
 
         $customer->save();
-        $this->emit('addmod');
+        $this->emit('createmodal');
         $this->dispatchBrowserEvent('form-submitted', ['msg' => 'Customer Created successfully']);
 
     }

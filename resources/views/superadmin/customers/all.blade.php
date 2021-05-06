@@ -16,6 +16,10 @@
  <link rel="stylesheet" href="{{ URL::asset('plugins/select2/css/select2.min.css') }}">
  <link rel="stylesheet" href="{{ URL::asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
  <!-- Bootstrap4 Duallistbox -->
+ <link rel="stylesheet" href="{{ URL::asset('plugins/toastr/toastr.min.css') }}">
+ <link rel="stylesheet" href="{{ URL::asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+
+
  <link rel="stylesheet" href="{{ URL::asset('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css') }}">
 @endsection
 @section('content')
@@ -62,12 +66,14 @@
 <!-- Bootstrap Switch -->
 <script src="{{ URL::asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>@stack('scripts')
 <!-- DataTables -->
-<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="{{ URL::asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ URL::asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ URL::asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ URL::asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ URL::asset('plugins/toastr/toastr.min.js') }}"></script>
+<script src="{{ URL::asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 
-<script src="../plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+<script src="{{ URL::asset('plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
 <script>
    $(function () {
       //Initialize Select2 Elements
@@ -140,20 +146,7 @@
       });
 
     })
-    $(function () {
-      $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-        event.preventDefault();
-        $(this).ekkoLightbox({
-          alwaysShowClose: true
-        });
-      });
 
-      $('.filter-container').filterizr({gutterPixels: 3});
-      $('.btn[data-filter]').on('click', function() {
-        $('.btn[data-filter]').removeClass('active');
-        $(this).addClass('active');
-      });
-    })
   </script>
 <script>
     $(function () {

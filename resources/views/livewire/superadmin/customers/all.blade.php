@@ -281,54 +281,22 @@
               </div>
         </div>
     </div>
-</div>
 @push('scripts')
-
-
-<script>
-        window.addEventListener('contentChanged', event => {
-            $( "#example1" ).DataTable();
-
-        });
- </script>
-
     <script>
-        function vat() {
-            $('.select2').select2();
-        }
-        document.addEventListener("DOMContentLoaded", () => {
+        window.livewire.on('createmodal', () => {
 
-
-
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
-
-});
-
-    </script>
-    <script>
-        window.livewire.on('userStore', () => {
-            console.log("working");
             $('#createmodal').modal('hide');
         });
-
-    </script>
-    <script>
-        window.livewire.on('editmod', () => {
-            console.log("working");
+</script>
+<script>
+            window.livewire.on('editmod', () => {
+                console.log("working");
             $('#editmodal').modal('toggle');
         });
 
-    </script>
-    <script>
+
         window.livewire.on('addmod', () => {
+            console.log('working');
             $('#addstock').modal('toggle');
         });
 
@@ -341,6 +309,7 @@
                     showConfirmButton: true,
                     timer: 3000
                 });
+
                 Toast.fire({
                     icon: 'success',
                     title: event.detail.msg

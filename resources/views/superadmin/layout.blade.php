@@ -222,6 +222,8 @@
     <!-- bs-custom-file-input -->
     <script src="{{ URL::asset('/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
     <!-- AdminLTE App -->
+    @stack('scripts')
+
     @yield('javascript')
     <script src="{{ URL::asset('/dist/js/adminlte.min.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
